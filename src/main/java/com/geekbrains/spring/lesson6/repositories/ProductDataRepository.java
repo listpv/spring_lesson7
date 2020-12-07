@@ -4,9 +4,11 @@ import com.geekbrains.spring.lesson6.data.ProductData;
 import com.geekbrains.spring.lesson6.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ProductDataRepository extends JpaRepository<Product, Long> {
 
     @Query("select new com.geekbrains.spring.lesson6.data.ProductData(p.id, p.title, p.brandName, p.price, p.createDate, p.modifyDate) from Product p")
