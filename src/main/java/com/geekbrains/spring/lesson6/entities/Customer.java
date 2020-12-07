@@ -1,5 +1,6 @@
 package com.geekbrains.spring.lesson6.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.geekbrains.spring.lesson6.entities.views.CustomerView;
 
@@ -12,24 +13,31 @@ import java.util.List;
 public class Customer extends AbstractItem {
 
     @Column(name = "name")
+    @JsonView(CustomerView.IdName.class)
     private String name;
 
     @Column(name = "email")
+    @JsonView(CustomerView.IdNameBirthdayPhoneEmailAddressOrder.class)
     private String email;
 
     @Column(name = "phone")
+    @JsonView(CustomerView.IdNameBirthdayPhoneEmailAddressOrder.class)
     private String phone;
 
     @Column(name = "birthday")
+    @JsonView(CustomerView.IdNameBirthday.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
 
     @Column(name = "address")
+    @JsonView(CustomerView.IdNameBirthdayPhoneEmailAddressOrder.class)
     private String address;
 
     @Column(name = "description")
     private String description;
 
     @OneToMany(mappedBy = "customer")
+    @JsonView(CustomerView.IdNameBirthdayPhoneEmailAddressOrder.class)
     private List<Order> orders;
 
     public Customer() {
@@ -43,6 +51,8 @@ public class Customer extends AbstractItem {
         this.address = address;
         this.description = description;
     }
+
+
 
     public String getName() {
         return name;

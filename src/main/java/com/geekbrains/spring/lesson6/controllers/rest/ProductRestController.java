@@ -72,6 +72,8 @@ public class ProductRestController {
         productService.remove(id);
     }
 
+
+
     @GetMapping(value = "/jsonData/{id}",produces= MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ProductData productDataToJson(
